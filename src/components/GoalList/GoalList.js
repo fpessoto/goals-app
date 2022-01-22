@@ -1,12 +1,26 @@
-import React from 'react';
+import React from "react";
 
-import './GoalList.css';
+import Goal from "../../components/Goal/Goal";
 
-const GoalList = props => {
+import "./GoalList.css";
+
+const GoalList = (props) => {
+  const deleteGoalHandler = (goal) => {
+    console.log("goal list delete", goal);
+
+    props.onDeleteGoalHandler(goal);
+  };
+
   return (
     <ul className="goal-list">
-      {props.goals.map(goal => {
-        return <li key={goal.id}>{goal.text}</li>;
+      {props.goals.map((goal) => {
+        return (
+          <Goal
+            goal={goal}
+            key={goal.id}
+            onDeleteGoalHandler={deleteGoalHandler}
+          />
+        );
       })}
     </ul>
   );
